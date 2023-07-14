@@ -7,7 +7,59 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11.3"
+pydantic = "^2.0.3"
+pydantic-settings = "^2.0.2"
+rich = "^13.4.2"
+typed-ast = "^1.5.5"
+sqlalchemy = "^2.0.18"
+greenlet = "^2.0.2"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.3.3"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+black = "^23.7.0"
+mypy = "^1.4.1"
+commitizen = "^3.5.2"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.commitizen.customize]
+change_type_order = ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"]
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 88
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | migrations
+)/
+'''
+
+[tool.mypy]
+python_version = "3.11"
+check_untyped_defs = true
+ignore_missing_imports = true
+warn_redundant_casts = true
+warn_unused_ignores = true
