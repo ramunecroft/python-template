@@ -1,3 +1,5 @@
+DIR_NAME := $(shell basename `pwd`)
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -14,9 +16,9 @@ test:  ## 🧪 run test
 
 .PHONY: run
 dev:  ## run application
-	DEVELOPMENT=TRUE uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+	DEVELOPMENT=TRUE uvicorn $(DIR_NAME).main:app --host 0.0.0.0 --port 8000 --reload
 prod:
-	PRODUCTION=TRUE uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+	PRODUCTION=TRUE uvicorn $(DIR_NAME).main:app --host 0.0.0.0 --port 8000 --reload
 
 
 .PHONY: clean
